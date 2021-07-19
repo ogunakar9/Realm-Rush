@@ -77,9 +77,14 @@ public class CoordinateLabeler : MonoBehaviour
 
     void DisplayCoordinates()
     {
+        if (gridManager == null)
+        {
+            return;
+        }
+        
         Vector3 parentPos = transform.parent.position;
-        coordinates.x = Mathf.RoundToInt(parentPos.x / UnityEditor.EditorSnapSettings.move.x);
-        coordinates.y = Mathf.RoundToInt(parentPos.z / UnityEditor.EditorSnapSettings.move.z);
+        coordinates.x = Mathf.RoundToInt(parentPos.x / gridManager.UnityGridSize);
+        coordinates.y = Mathf.RoundToInt(parentPos.z / gridManager.UnityGridSize);
     
         label.text = coordinates.x + "," + coordinates.y;
     }
